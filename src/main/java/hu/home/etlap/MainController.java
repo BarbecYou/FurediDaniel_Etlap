@@ -47,16 +47,7 @@ public class MainController extends Controller{
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         categoryCol.setCellValueFactory(new PropertyValueFactory<>("category"));
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        try {
-            db = new Db();
-            tableView.getItems().clear();
-            tableView.getItems().addAll(db.readData());
-        } catch (SQLException e) {
-            Platform.runLater(() -> {
-                alert(Alert.AlertType.ERROR, "Sikertelen kapcsolat az adatbázissal!");
-                Platform.exit();
-            });
-        }
+        loadData();
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 descriptionLabel.setText(newSelection.getDescription());
@@ -72,6 +63,19 @@ public class MainController extends Controller{
             SpinnerValueFactory<Integer> valFac = new SpinnerValueFactory.IntegerSpinnerValueFactory(5, 50, 0, 5);
             priceChangeSpinner.setValueFactory(valFac);
         });
+    }
+
+    public void loadData() {
+        try {
+            db = new Db();
+            tableView.getItems().clear();
+            tableView.getItems().addAll(db.readData());
+        } catch (SQLException e) {
+            Platform.runLater(() -> {
+                alert(Alert.AlertType.ERROR, "Sikertelen kapcsolat az adatbázissal!");
+                Platform.exit();
+            });
+        }
     }
 
     @FXML

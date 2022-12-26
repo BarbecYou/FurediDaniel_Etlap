@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:controller="hu.home.etlap.InsertController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.home.etlap.InsertController">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,22 +28,22 @@
       <Label text="Leírás:" GridPane.rowIndex="1" />
       <Label text="Ár:" GridPane.rowIndex="2" />
       <Label text="Kategória:" GridPane.rowIndex="3" />
-      <TextField promptText="Név" GridPane.columnIndex="1">
+      <TextField fx:id="nameField" promptText="Név" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </TextField>
-      <Spinner GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Spinner fx:id="priceSpinner" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </Spinner>
-      <Button mnemonicParsing="false" text="Hozzáadás" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
-      <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Leírás" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Button fx:id="insertButton" mnemonicParsing="false" onAction="#insertClick" text="Hozzáadás" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+      <TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" promptText="Leírás" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets right="10.0" />
          </GridPane.margin>
       </TextArea>
-      <ComboBox prefWidth="150.0" promptText="Kategória" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ComboBox fx:id="categoryCombo" prefWidth="150.0" promptText="Kategória" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>
