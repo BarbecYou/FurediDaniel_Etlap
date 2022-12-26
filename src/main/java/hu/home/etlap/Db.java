@@ -19,7 +19,7 @@ public class Db {
     }
 
     public boolean createData(Food food) throws SQLException {
-        String sql = "INSERT INTO etlapdb(nev, leiras, ar, kategoria) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO etlap(nev, leiras, ar, kategoria) VALUES (?, ?, ?, ?)";
         PreparedStatement stmt = conn.prepareStatement(sql);
         stmt.setString(1, food.getName());
         stmt.setString(2, food.getDescription());
@@ -30,7 +30,7 @@ public class Db {
     }
     public List<Food> readData() throws SQLException {
         List<Food> foodList = new ArrayList<>();
-        String sql = "SELECT * FROM etlapdb";
+        String sql = "SELECT * FROM etlap";
         Statement stmt = conn.createStatement();
         ResultSet result = stmt.executeQuery(sql);
         while (result.next()){

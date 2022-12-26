@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.home.etlap.MainController">
    <children>
-      <TableView maxWidth="300.0" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
+      <TableView fx:id="tableView" maxWidth="300.0" prefHeight="200.0" prefWidth="300.0" HBox.hgrow="ALWAYS">
         <columns>
-          <TableColumn maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Név" />
-          <TableColumn maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Kategória" />
-            <TableColumn maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Ár" />
+          <TableColumn fx:id="nameCol" maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Név" />
+          <TableColumn fx:id="categoryCol" maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Kategória" />
+            <TableColumn fx:id="priceCol" maxWidth="125.0" minWidth="20.0" prefWidth="100.0" text="Ár" />
         </columns>
       </TableView>
       <VBox alignment="TOP_CENTER" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
@@ -28,8 +31,51 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
-            <Label maxWidth="200.0" text="Válassz ki egy ételt először hogy megnézd a leírását" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+            <Label fx:id="descriptionLabel" maxWidth="200.0" text="Válassz ki egy ételt először hogy megnézd a leírását" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
          </children>
+      </VBox>
+      <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+         <children>
+            <Button fx:id="newButton" mnemonicParsing="false" onAction="#newData" text="Új étel felvétele">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteData" text="Törlés">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="priceChangeButton" mnemonicParsing="false" onAction="#priceChange" text="Árak növelése">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+            <RadioButton fx:id="fixValueRadio" mnemonicParsing="false" selected="true" text="Fix érték (Ft)">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="priceChangeGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="percentValueRadio" mnemonicParsing="false" text="\%-os növelés" toggleGroup="$priceChangeGroup">
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </RadioButton>
+            <Spinner fx:id="priceChangeSpinner" editable="true">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Spinner>
+         </children>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
       </VBox>
    </children>
 </HBox>
